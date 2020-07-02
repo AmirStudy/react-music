@@ -23,7 +23,8 @@ function App() {
     setAudioProperties
   ] = useState({
     playerStatus: 'stopped',
-    volume: 1
+    volume: 1,
+    playerImage: 'turntable.jpg'
   })
 
   const handlePlay = () => {
@@ -35,13 +36,16 @@ function App() {
     audioContext.resume()
 
     let newStatus = ''
+    let newPlayerImage = ''
     if (
       audioProperties.playerStatus === 'playing'
     ) {
       newStatus = 'stopped'
+      newPlayerImage = 'turntable.jpg'
       audioElement?.pause()
     } else {
       newStatus = 'playing'
+      newPlayerImage = 'giphy.webp'
       audioElement?.play()
     }
 
@@ -52,7 +56,8 @@ function App() {
 
     setAudioProperties({
       playerStatus: newStatus,
-      volume: audioProperties.volume
+      volume: audioProperties.volume,
+      playerImage: newPlayerImage
     })
 
     // audioProperties.playerStatus === "playing"
@@ -86,11 +91,14 @@ function App() {
             <h4 className="display-5 text-muted">
               <em>Welcome to React Music</em>
             </h4>
+            <div className="alert alert-warning" role="alert">
+              Adjust your speaker volume before pressing Play!
+            </div>
             <br />
           </div>
           <div className="text-center">
             <img
-              src="turntable.jpg"
+              src={audioProperties.playerImage}
               className="rounded img-fluid mb-3"
               alt="Turntable"
             />
