@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 
+export interface IMusicPlayerData {
+  playerStatus: string,
+  volume: number | undefined,
+  playerImage: string
+}
+
 const AudioContext =
   window.AudioContext || window.webkitAudioContext
 
@@ -21,16 +27,16 @@ function MusicPlayer() {
   const [
     audioProperties,
     setAudioProperties
-  ] = useState({
+  ] = useState<IMusicPlayerData | undefined>({
     playerStatus: 'stopped',
     volume: 1,
     playerImage: 'turntable.jpg'
   })
 
-  const handlePlay = () => {
+  const handlePlay = () : void => {
     console.log(
       `handle play, old playerStatus: ${
-        audioProperties.playerStatus
+        audioProperties?.playerStatus
       }`
     )
     audioContext.resume()
@@ -38,7 +44,7 @@ function MusicPlayer() {
     let newStatus = ''
     let newPlayerImage = ''
     if (
-      audioProperties.playerStatus === 'playing'
+      audioProperties?.playerStatus === 'playing'
     ) {
       newStatus = 'stopped'
       newPlayerImage = 'turntable.jpg'
@@ -51,7 +57,7 @@ function MusicPlayer() {
 
     setAudioProperties({
       playerStatus: newStatus,
-      volume: audioProperties.volume,
+      volume: audioProperties?.volume,
       playerImage: newPlayerImage
     })
 
@@ -62,7 +68,7 @@ function MusicPlayer() {
     )
   }
 
-  const changeVolume = (e) => {
+  const changeVolume = (e: any) : void => {
     console.log(
       `updating volume to ${e.target.value}`
     )
@@ -89,7 +95,7 @@ function MusicPlayer() {
           </div>
           <div className="text-center">
             <img
-              src={audioProperties.playerImage}
+              src={audioProperties?.playerImage}
               className="rounded img-fluid mb-3"
               alt="Turntable"
             />
