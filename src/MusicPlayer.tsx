@@ -17,7 +17,7 @@ track
   .connect(gainNode)
   .connect(audioContext.destination)
 
-function App() {
+function MusicPlayer() {
   const [
     audioProperties,
     setAudioProperties
@@ -125,4 +125,4 @@ function App() {
   )
 }
 
-export default App
+export default MusicPlayer
