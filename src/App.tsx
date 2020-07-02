@@ -49,20 +49,11 @@ function App() {
       audioElement?.play()
     }
 
-    // const newStatus =
-    //   audioProperties.playerStatus === 'playing'
-    //     ? 'stopped'
-    //     : 'playing'
-
     setAudioProperties({
       playerStatus: newStatus,
       volume: audioProperties.volume,
       playerImage: newPlayerImage
     })
-
-    // audioProperties.playerStatus === "playing"
-    // ? audioElement?.play()
-    // : audioElement?.pause()
 
     console.log(
       `new playerStatus is ${
